@@ -1,1 +1,1 @@
-npm --version
+cd /MCS1
