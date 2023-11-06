@@ -1,10 +1,10 @@
-def BuildApp(){
+def buildApp(){
   echo 'build stage'
 }
-def TestApp(){
+def testApp(){
   echo 'test stage'
 }
-def DeployApp(){
+def deployApp(){
   echo "deploy  stage vesion ${params.VERSION}"
 }
 return this
