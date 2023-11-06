@@ -16,7 +16,7 @@ def buildImage(){
   ){
     echo "$USER $PASS"
     sh 'ls'
-    sh 'docker build -t 67.205.176.30:8083/java-app:jma-2.0 MCS1/Dockerfile'
+    sh 'docker build -t 67.205.176.30:8083/java-app:jma-2.0 MCS1/.'
       echo "after build"
     sh "echo $PASS | docker login -u $USER --password-stdin 67.205.176.30:8083"
      echo "after login"
