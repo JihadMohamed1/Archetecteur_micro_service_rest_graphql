@@ -16,7 +16,9 @@ pipeline{
                  }
     stage("build"){
       steps{
+        script{
         gv.BuildApp()
+        }
             }
                  }
     stage("test"){
@@ -26,12 +28,16 @@ pipeline{
         }
       }
       steps{
+        script{
        gv.TestApp()
+        }
             }
                  }
     stage("deploy"){
       steps{
+        script{
         gv.DeployApp()
+        }
             }
                  }
   }
