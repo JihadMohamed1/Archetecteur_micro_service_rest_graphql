@@ -9,7 +9,7 @@ def buildImage(){
   echo 'build Image stage'
   withCredentials(
     [usernamePassword(
-      credentialsId : 'dockerhub_cred',
+      credentialsId : 'nexus_cred',
       passwordVariable : 'PASS',
       usernameVariable : 'USER'
     )]
