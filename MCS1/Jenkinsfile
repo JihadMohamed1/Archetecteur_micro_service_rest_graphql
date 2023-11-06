@@ -9,9 +9,11 @@ pipeline{
   stages{
         stage("init"){
       steps{
+        echo 'here'
        script{
          gv = load "script.groovy"
        }
+        echo 'here end'
             }
                  }
     stage("build"){
