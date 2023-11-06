@@ -27,7 +27,7 @@ pipeline{
      stage("build image"){
       steps{
         script{
-        buildImage()
+        buildImage '67.205.176.30:8083/java-app:jma-3.0'
         }
             }
                  }
