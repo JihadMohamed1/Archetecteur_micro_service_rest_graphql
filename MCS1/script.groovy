@@ -6,6 +6,7 @@ def testApp(){
 }
 def deployApp(){
   echo 'deploy stage'
+  echo "deployed in ${ENV}"
 }
 
 return this
