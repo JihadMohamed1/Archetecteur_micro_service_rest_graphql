@@ -1,5 +1,6 @@
 def buildJar(){
   echo 'build jar stage'
+  sh 'ls'
   sh 'mvn package'
 }
 def buildImage(){
