@@ -2,11 +2,10 @@ def gv
 
 pipeline{
   agent any
-  
-  parameters{
-    choice( name : 'VERSION' , choices : ['1.1.0','1.1.1'], description : '')
-    booleanParam( name : 'executeTests' , defaultValue : true , description : '')
+  tools{
+    maven 'maven'
   }
+ 
   stages{
         stage("init"){
       steps{
@@ -17,37 +16,26 @@ pipeline{
         echo 'here end'
             }
                  }
-    stage("build"){
+    stage("build jar"){
       steps{
         script{
-        gv.buildApp()
+        gv.buildJar()
         }
             }
                  }
-    stage("test"){
-      when{
-        expression{
-          params.executeTests
-        }
-      }
+     stage("build image"){
       steps{
         script{
-       gv.testApp()
+        gv.buildImage()
         }
             }
                  }
+   
     stage("deploy"){
-      input{
-        message "select deployment env"
-        ok "DONE"
-          parameters{choice( name : 'env' , choices : ['dev','test','prod'], description : '')}
-      }
       steps{
-        script{
-        gv.deployApp()
-        }
+        echo 'deployment'
             }
-                 }
+         }
   }
   
 }
