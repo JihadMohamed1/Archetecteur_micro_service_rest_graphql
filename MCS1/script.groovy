@@ -15,11 +15,11 @@ def buildImage(){
     )]
   ){
     echo "$USER $PASS"
-    sh 'docker build -t 67.205.176.30:8083:jma-2.0 .'
+    sh 'docker build -t 67.205.176.30:8083/java-app:jma-2.0 .'
       echo "after build"
     sh "echo $PASS | docker login -u $USER --password-stdin 67.205.176.30:8083"
      echo "after login"
-    sh 'docker push 67.205.176.30:8083:jma-2.0'
+    sh 'docker push  67.205.176.30:8083/java-app:jma-2.0'
      echo "after push"
   }
 }
