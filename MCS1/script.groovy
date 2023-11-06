@@ -5,5 +5,6 @@ def TestApp(){
   echo 'test stage'
 }
 def DeployApp(){
-  echo 'deploy  stage vesion ${params.VERSION}'
+  echo "deploy  stage vesion ${params.VERSION}"
 }
+return this
