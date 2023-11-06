@@ -7,7 +7,7 @@ def buildJar(){
 }
 def buildImage(){
   echo 'build Image stage'
-  whithCredentials(
+  withCredentials(
     [usernamePassword(
       credentialsId : 'dockerhub_cred',
       passwordVariable : 'PASS',
