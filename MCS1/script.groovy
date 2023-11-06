@@ -1,6 +1,6 @@
 def buildJar(){
   echo 'build jar stage'
-  sh 'mvn package MCS1/pom.xml'
+  sh 'mvn package'
 }
 def buildImage(){
   echo 'build Image stage'
