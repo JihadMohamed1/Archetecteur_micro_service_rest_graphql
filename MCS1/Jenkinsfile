@@ -1,3 +1,4 @@
+def gv
 pipeline{
   agent any
   
@@ -6,9 +7,16 @@ pipeline{
     booleanParam( name : 'executeTests' , defaultValue : true , description : '')
   }
   stages{
+        stage("init"){
+      steps{
+       script{
+         gv = load "script.groovy"
+       }
+            }
+                 }
     stage("build"){
       steps{
-        echo 'build application ...'
+        gv.BuildApp()
             }
                  }
     stage("test"){
@@ -18,13 +26,12 @@ pipeline{
         }
       }
       steps{
-        echo 'test application ...'
+       gv.TestApp()
             }
                  }
     stage("deploy"){
       steps{
-        echo 'deploy application ...'
-        echo " deploy artifat version ${params.VERSION}"
+        gv.DeployApp()
             }
                  }
   }
