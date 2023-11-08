@@ -10,11 +10,12 @@ pipeline{
   stages{
         stage("init"){
       steps{
-        echo 'here'
+        echo 'here tigger is working'
        script{
          gv = load "MCS1/script.groovy"
        }
         echo 'here end'
+        
             }
                  }
     stage("build jar"){
