@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@RestController
-//@RequestMapping(produces = "application/json")
+@RestController
+@RequestMapping(produces = "application/json")
 public class StudentRestController {
     private StudentRepo studentRepo;
     public StudentRestController(StudentRepo studentRepo){

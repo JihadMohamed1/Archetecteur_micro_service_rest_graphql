@@ -71,8 +71,8 @@ public class StudentServiceImpl implements StudentService{
         studentDTOResponse.setBirtDate(student.getBirthDate());
         studentDTOResponse.setContactNo(student.getContactNo());
         studentDTOResponse.setGender(student.getGender());
-
-        studentDTOResponse.setClassroom(student.getClassroom());
+    Classroom classe = classroomRepo.findByName(String.valueOf(student.getClassroom()));
+        studentDTOResponse.setClassroom(classe);
         return studentDTOResponse;
     }
 
