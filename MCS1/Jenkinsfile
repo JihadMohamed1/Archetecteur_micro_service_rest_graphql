@@ -11,7 +11,7 @@ pipeline{
         stage("init"){
       steps{
 
-        echo 'here tigger is working hope'
+        echo 'here tigger is working hope less '
 
        script{
          gv = load "MCS1/script.groovy"
