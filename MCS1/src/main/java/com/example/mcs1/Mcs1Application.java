@@ -34,6 +34,7 @@ public class Mcs1Application implements CommandLineRunner {
                         (i%2 == 0)?Gender.FEMALE:Gender.MALE,"0661000"+i,
                         "address Etudiant"+i,(i%2 ==0)?Boolean.FALSE:Boolean.TRUE,
                         classroom));
+                //hello
             }
         });
     }
