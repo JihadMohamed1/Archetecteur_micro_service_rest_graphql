@@ -71,7 +71,7 @@ pipeline{
          script{
            withCredentials([string(credentialsId: 'github_tok', variable: 'SECRET_TOKEN')]){
            sh 'git config --global user.email "jenkins@example.com" '
-            sh 'git config --global user.name "jenkinsg"'
+            sh 'git config --global user.name "jenkins"'
              
              sh 'git status'
              sh 'git branch'
