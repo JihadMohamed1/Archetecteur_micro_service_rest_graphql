@@ -18,7 +18,7 @@ pipeline{
           echo 'befor read'
           def matcher = readFile('MCS1/pom.xml') =~ '<version>(.+)<version>'
            echo 'after read'
-          def version = matcher [0][1]
+          def version = matcher[0][1]
           echo 'after matcher'
           env.IMAGE_NAME="$version-$BUILD_NUMBER"
           echo 'end incre '
