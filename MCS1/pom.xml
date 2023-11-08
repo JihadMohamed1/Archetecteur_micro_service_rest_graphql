@@ -5,7 +5,7 @@
   
     <groupId>com.example</groupId>
     <artifactId>MCS1</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>MCS1</name>
     <description>MCS1</description>
 <parent>
