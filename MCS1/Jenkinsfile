@@ -6,6 +6,12 @@ pipeline{
   tools{
     maven 'maven'
   }
+   
+    environment {
+        // Referencing Jenkins credentials ID
+        GITHUB_TOKEN = 'glpat-x2Zy1HzzD_7yHX1z1ry8'
+     
+    }
  
   stages{
     stage(" increment stage"){
@@ -71,7 +77,8 @@ pipeline{
              sh 'git branch'
              sh 'git config --list '
              
-             sh "git remote set-url origin https://${USER}:${PASS}@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git"
+             sh "git remote set-url origin https://${env.GITHUB_TOKEN}@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git"
+            https://${GITHUB_TOKEN}@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git
              sh 'git add .'
              sh 'git commit -m "c1:version bump"'
              sh 'git push origin HEAD:jenkins-job'
