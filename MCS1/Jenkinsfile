@@ -10,7 +10,7 @@ pipeline{
   stages{
         stage("init"){
       steps{
-
+        echo 'Fuck everyone call mokthar'
         echo 'here tigger is working hope malefait'
 
        script{
