@@ -67,7 +67,12 @@ pipeline{
    
     stage("deploy"){
       steps{
-        echo 'deployment'
+        script{
+          def dockerCmd = 'docker run -p 8080:8081 -d jihad342/test_docker_1.0:jma_1.0'
+          sshagent(['ec2-server-key']){
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@16.16.185.80 ${dockerCmd}"
+          }
+        }
             }
          }
     
