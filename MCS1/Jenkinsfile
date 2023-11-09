@@ -80,7 +80,7 @@ pipeline{
              sh "git remote set-url origin https://${SECRET_TOKEN}@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git"
              sh 'git add .'
              sh 'git commit -m "c1:version bump"'
-             sh 'git tag -m "[skip ci]"'
+             sh 'git tag [skip ci]'
              sh 'git push origin HEAD:jenkins-job  [skip ci]'
            }
                }
