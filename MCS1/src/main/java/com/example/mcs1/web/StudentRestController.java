@@ -22,6 +22,10 @@ public class StudentRestController {
             return studentRepo.findById(id).orElseThrow(() ->new
                     RuntimeException(String.format("le compte %s n'existe pas !",id)));
         }
+    @GetMapping("/Home")
+    public String student(){
+        return "<h1>hello mather fuker</h2>";
+    }
         @PostMapping("/students/{id}")
     public Student saveStudent(@RequestBody Student student){
         return studentRepo.save(student);
