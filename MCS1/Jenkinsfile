@@ -67,7 +67,7 @@ pipeline{
         }
             }
                  }
-      stage("clean ec2 docker"){
+ /**     stage("clean ec2 docker"){
       steps{
         script{
             def dockerCmdC = 'docker rm -f $(docker ps -aq)'
@@ -78,7 +78,7 @@ pipeline{
           }
         }
             }
-         }
+         }**/
    
     stage("deploy"){
       steps{
