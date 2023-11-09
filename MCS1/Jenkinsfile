@@ -6,12 +6,43 @@ pipeline{
   tools{
     maven 'maven'
   }
+   
+    environment {
+        // Referencing Jenkins credentials ID
+        GITHUB_TOKEN = 'glpat-x2Zy1HzzD_7yHX1z1ry8l'
+     
+    }
  
   stages{
+       stage('Checkout') {
+                steps {
+                    scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                }
+            }
+    stage(" increment stage"){
+      steps{
+        script{
+          echo ' increment app version..'
+          sh'mvn -f MCS1/pom.xml build-helper:parse-version versions:set \
+          -DnewVersion=\\\${parsedVersion.majorVersion}.\\\${parsedVersion.minorVersion}.\\\${parsedVersion.nextIncrementalVersion} \
+          versions:commit'
+          echo 'befor read'
+          def matcher = readFile('MCS1/pom.xml') =~ '<version>(.+)</version>'
+           echo 'after read'
+          def version = matcher[0][1]
+          echo 'after matcher'
+          env.IMAGE_NAME="$version-$BUILD_NUMBER"
+          echo 'end incre '
+        }
+      }
+    }
         stage("init"){
       steps{
-        echo 'Fuck everyone call mokthar'
-        echo 'here tigger is working hope malefait'
+
+
+        echo 'here tigger is working hope gama '
+
+
 
        script{
          gv = load "MCS1/script.groovy"
@@ -30,16 +61,43 @@ pipeline{
      stage("build image"){
       steps{
         script{
-        buildImage '67.205.176.30:8083/java-app:jma-3.0'
+        buildImage "67.205.176.30:8083/java-app:${IMAGE_NAME}"
         dockerLogin()
-        dockerPush '67.205.176.30:8083/java-app:jma-3.0'
+        dockerPush "67.205.176.30:8083/java-app:${IMAGE_NAME}"
         }
             }
                  }
    
     stage("deploy"){
       steps{
-        echo 'deployment'
+        script{
+          def dockerCmd = 'docker run -p 8080:8081 -d jihad342/test_docker_1.0:jma_1.0'
+          sshagent(['ec2-server-key']){
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@16.16.185.80 ${dockerCmd}"
+          }
+        }
+            }
+         }
+    
+    stage("commit version"){
+      steps{
+         script{
+          
+           withCredentials([string(credentialsId: 'github_tok', variable: 'SECRET_TOKEN')]){
+           sh 'git config --global user.email "jenkins@example.com" '
+            sh 'git config --global user.name "jenkins"'
+             
+             sh 'git status'
+             sh 'git branch'
+             sh 'git config --list '
+             
+             sh "git remote set-url origin https://${SECRET_TOKEN}@github.com/JihadMohamed1/Archetecteur_micro_service_rest_graphql.git"
+             sh 'git add .'
+             sh 'git commit -m "c1:version bump [ci skip] "'
+          
+             sh 'git push origin HEAD:jenkins-job '
+           }
+               }
             }
          }
   }
