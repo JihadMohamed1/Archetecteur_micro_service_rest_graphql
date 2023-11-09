@@ -67,6 +67,18 @@ pipeline{
         }
             }
                  }
+      stage("clean ec2 docker"){
+      steps{
+        script{
+            def dockerCmdC = 'docker rm -f $(docker ps -aq)'
+            def dockerCmdI = "docker image prune -af"
+          sshagent(['ec2-server-key']){
+            sh "ssh -o StrictHostKeyChecking=no ec2-user@16.16.185.80 ${dockerCmdC}"
+             sh "ssh -o StrictHostKeyChecking=no ec2-user@16.16.185.80 ${dockerCmdI}"
+          }
+        }
+            }
+         }
    
     stage("deploy"){
       steps{
