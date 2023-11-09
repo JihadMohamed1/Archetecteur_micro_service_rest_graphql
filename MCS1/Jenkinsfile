@@ -9,7 +9,7 @@ pipeline{
    
     environment {
         // Referencing Jenkins credentials ID
-        GITHUB_TOKEN = 'glpat-x2Zy1HzzD_7yHX1z1ry8'
+        GITHUB_TOKEN = 'glpat-x2Zy1HzzD_7yHX1z1ry8l'
      
     }
  
