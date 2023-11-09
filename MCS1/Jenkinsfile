@@ -14,9 +14,13 @@ pipeline{
     }
  
   stages{
+       stage('Checkout') {
+                steps {
+                    scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+                }
+            }
     stage(" increment stage"){
       steps{
-          scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
         script{
           echo ' increment app version..'
           sh'mvn -f MCS1/pom.xml build-helper:parse-version versions:set \
